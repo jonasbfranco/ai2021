@@ -1,10 +1,17 @@
 ## BEGIN User Auth
-AuthType Basic
-AuthName "Digite seu nome e sua senha"
-AuthUserFile /var/www/html/ai2021/admin/.htpasswd
-Require valid-user
+##AuthType Basic
+##AuthName "Digite seu nome e sua senha"
+##AuthUserFile /var/www/html/ai2021/admin/.htpasswd
+##Require valid-user
 ## END User Auth
 
+
+## BEGIN Rotas
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1
+## END Rotas
 
 
 

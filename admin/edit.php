@@ -25,7 +25,7 @@ require 'inc/class.php';
 
     <div class="row container">
         <div class="col s12">
-            <h3 class="header indigo-text text-darken-4">Cadastrar Palestra</h3>
+            <h3 class="header indigo-text text-darken-4">Editar Palestra</h3>
 
             <form action="" >
             <div class="row">
@@ -76,7 +76,6 @@ require 'inc/class.php';
         </div>
     </div> <!-- Fim DIV Row -->
 
-     <?php include("req/footer.php"); ?> 
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
