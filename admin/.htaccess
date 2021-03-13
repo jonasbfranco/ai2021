@@ -1,0 +1,22 @@
+## BEGIN User Auth
+AuthType Basic
+AuthName "Digite seu nome e sua senha"
+AuthUserFile /var/www/html/ai2021/admin/.htpasswd
+Require valid-user
+## END User Auth
+
+
+
+
+## BEGIN Forçar HTTPS
+#RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+## END Forçar HTTPS
+
+## BEGIN Redirecionamento Error
+
+## END Redirecionamento Error
+
+
+

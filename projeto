@@ -1,0 +1,26 @@
+### Projeto Laravel #descartado
+
+# Novo projeto
+
+### Admin
+
+>	.htaccess
+>	
+>	.hwaccess
+>	
+>	index.php {select all, paginacao, edicao, exclusao}
+>	
+>	edit.php
+
+
+### App
+
+> index.php {login}
+> 
+> cad.php
+> 
+> show.php {pagina exibicao palestas, sair}
+> 
+> video.php {pagina exibicao video, botao confirmacao}
+> 
+> confirmacao {confirmacao video, volta para palestras}
