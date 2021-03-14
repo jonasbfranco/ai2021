@@ -51,7 +51,7 @@ if($conexao){
 
 
 //===================================================
-// Conexao com banco de Dados MySql
+// Login Usuário
 //===================================================
 abstract class Usuario {
     static function Logar($login, $senha) {   
@@ -93,7 +93,7 @@ abstract class Usuario {
 
     static function Logout() {
       
-        header('Location: ../.php');
+        header('Location: ../');
     }
 
 
@@ -126,10 +126,13 @@ abstract class Palestra{
     }
 
 
+//===================================================
+// Exibir as Palestras Cadastradas
+//===================================================
     static function Show(){
         try {
             $conexao = BancoDados::conectar();
-            $show = $conexao->prepare('SELECT * FROM palestras ORDER BY titulo_palestra ASC');
+            $show = $conexao->prepare('SELECT * FROM palestras ORDER BY data_liberacao ASC');
             $show->execute();
             $show = $show->fetchAll(PDO::FETCH_OBJ);
 
@@ -140,13 +143,15 @@ abstract class Palestra{
         } 
     }
 
+//===================================================
+// Exibir a Palestra a ser Editada
+//===================================================
     static function Edit($id){
         try {
             $conexao = BancoDados::conectar();
             $edit = $conexao->prepare("SELECT * FROM palestras WHERE id = $id LIMIT 1");
             // SELECT * FROM funcionarios WHERE nome LIKE '%Jonas%';
             // SELECT * FROM palestras WHERE id LIKE '%$id%' ORDER BY nome ASC
-            //$edit->bindValue(':id',$id);
             $edit->execute();
             $edit = $edit->fetchall(PDO::FETCH_OBJ);
             //$lista = $lista->fetch(PDO::FETCH_ASSOC);
@@ -157,11 +162,53 @@ abstract class Palestra{
         } 
     }
 
+//===================================================
+// Atualizar a Palestra
+//===================================================
+    static function Update($id_palestra, $titulo_palestra, $nome_palestra, $duracao_palestra, $data_liberacao){
+        try {
+            $conexao = BancoDados::conectar();
+            $update = $conexao->prepare('UPDATE palestras SET titulo_palestra = :titulo_palestra, nome_palestra = :nome_palestra,
+                                            duracao_palestra = :duracao_palestra, data_liberacao = :data_liberacao, data_alteracao = NOW() 
+                                        WHERE id = :id_palestra');
+            $update->bindValue(':id_palestra',$id_palestra);
+            $update->bindValue(':titulo_palestra',$titulo_palestra);
+            $update->bindValue(':nome_palestra',$nome_palestra);
+            $update->bindValue(':duracao_palestra',$duracao_palestra);
+            $update->bindValue(':data_liberacao',$data_liberacao);
+            $update->execute();
+            //$update = $update->fetch(PDO::FETCH_OBJ);
+            //$lista = $lista->fetch(PDO::FETCH_ASSOC);
+            return $update;
+
+        } catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        } 
+    }
+
+    //===================================================
+// Atualizar a Palestra
+//===================================================
+    static function Delete($id_palestra){
+        try {
+            $conexao = BancoDados::conectar();
+            $update = $conexao->prepare('DELETE from palestras WHERE id = :id_palestra');
+            $update->bindValue(':id_palestra',$id_palestra);
+            $update->execute();
+            
+            return $update;
+
+        } catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        } 
+    }
+
+
 
 }
 
 // Testando a inserçao de dados
-//$adicionar = Palestra::Cadastro('Teste Video','teste_video.mp4', 6000, '2021/03/14');
+//$adicionar = Palestra::Update('3','Teste Update','teste_update.mp4', 6000, '2021/03/14');
 
 
 

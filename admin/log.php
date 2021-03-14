@@ -30,9 +30,11 @@ if (!isset($_SESSION)) {session_start();}
 <body>
         
 
-    <div class="row container">
+   
+    <div class="container">
+     <div class="row">
         <div class="col s12">
-            <h2 class="header indigo-text text-darken-4" style="margin-top:200px;">Login</h2>
+            <h2 class="header indigo-text text-darken-4">Login</h2>
 
             <form action="inc/rot_log.php" method="post">
             <div class="row">
@@ -52,26 +54,34 @@ if (!isset($_SESSION)) {session_start();}
             </button>
 
             </form>
-    
-        
-
-
-
-
-    
         </div>
 
-        
+    </div>        
 
     </div> <!-- Fim DIV Row -->
-    <?php include("req/footer.php"); 
-    
+
+
+    <!--  Footer  -->
+
+        <footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+        <div class="footer-copyright">
+        <div class="container">
+        <div class="row">
+        © 2021 Copyright - Jonas B. Franco - TI
+        <a class="grey-text text-lighten-4 right" href="https://jonasbfranco.github.io/" target="_blank">
+        <i class="material-icons left">code</i>GitHub</a>
+        </div>
+        </div>
+        </div>
+    </footer>
+
+
+<?php    
     unset($_SESSION['registro']);
     unset($_SESSION['limite']);
     unset($_SESSION['sessao_usuario']);
     session_destroy();
-
-    ?> 
+?> 
 
 
     <!--JavaScript at end of body for optimized loading-->

@@ -63,8 +63,8 @@ require 'inc/class.php';
                     </div>
                 </div>
             </div>
-            <button class="btn blue waves-effect waves-light" type="submit" name="action">Cadastrar
-                <i class="material-icons left">send</i>
+            <button class="btn blue waves-effect waves-light" type="submit" name="action">Cadastrar Palestra
+                <i class="material-icons left">save</i>
             </button>
             <a href="dash"class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
             </form>

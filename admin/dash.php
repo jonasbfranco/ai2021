@@ -51,13 +51,29 @@ require 'inc/class.php';
                     <td><?= $showpalestra->data_liberacao ?></td>                
                     <td><a class="waves-effect waves-light btn orange" 
                             href="edit.php?id=<?= $showpalestra->id ?>">
-                            <i class="material-icons left">edit</i>Editar</a>
+                            <i class="material-icons left">edit</i>Editar
+                        </a>
                     </td>
                     <td>
-                        <form action="/admin/delete/{{ $showpalestra->id }}" method="post">
-                            <a class="waves-effect waves-light btn red" type="submit"><i class="material-icons left">delete</i>Excluir</a>
-                        </form>
+                        <a class="waves-effect waves-light btn red modal-trigger" 
+                            href="#modal<?= $showpalestra->id ?>">
+                            <i class="material-icons left">delete</i>Excluir
+                        </a>
                     </tr>
+
+                    <!-- Modal Structure -->
+                    <div id="modal<?= $showpalestra->id ?>" class="modal">
+                        <div class="modal-content">
+                        <h5>Tem certeza que deseja excluir ?</h5>
+                        <p>Palesta - <strong><?= $showpalestra->titulo_palestra ?></strong></p>
+                        </div>
+                        <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-red btn-flat">NÃO</a>
+                        <a href="inc/rot_del.php?id=<?= $showpalestra->id ?>" class="modal-close waves-effect waves-green btn-flat">SIM</a>
+                        </div>
+                    </div>
+
+
                     <?php
                         }
                     ?>
@@ -68,6 +84,7 @@ require 'inc/class.php';
 
        
     </div> <!-- Fim DIV Row -->
+
 
     <!-- Footer  -->
     <?php include("req/footer.php"); ?> 
@@ -81,6 +98,12 @@ require 'inc/class.php';
     
     <?php 
 
+
+//===================================================
+// Inicio da tratativa dos alertas (mensagens, toats)
+//===================================================
+
+    // mensagem de alerta sobre casdastro de palestra
     if(isset($_SESSION['msg_cad'])){ ?>
 
         <script>
@@ -89,6 +112,28 @@ require 'inc/class.php';
             M.toast({html: toastHTML});
         </script>
         <?php unset($_SESSION['msg_cad']); 
+    } 
+
+    // mensagem de alerta sobre edicao de palestra
+    if(isset($_SESSION['msg_edit'])){ ?>
+
+        <script>
+            //Toasts ( Mensagens para o Usuário ) -->
+            var toastHTML = '<span><?= $_SESSION['msg_edit'] ?></span>';
+            M.toast({html: toastHTML});
+        </script>
+        <?php unset($_SESSION['msg_edit']); 
+    }
+
+    // mensagem de alerta sobre exclusao de palestra
+    if(isset($_SESSION['msg_del'])){ ?>
+
+        <script>
+            //Toasts ( Mensagens para o Usuário ) -->
+            var toastHTML = '<span><?= $_SESSION['msg_del'] ?></span>';
+            M.toast({html: toastHTML});
+        </script>
+        <?php unset($_SESSION['msg_del']); 
     } ?>
 
     
@@ -99,6 +144,22 @@ require 'inc/class.php';
         //toastInstance.dismiss();
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+        });
+
+        // Or with jQuery
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
+    </script>
+<?php
+//===================================================
+// Fim da tratativa dos alertas (mensagens, toats)
+//===================================================
+?>
 
 </body>
 </html>

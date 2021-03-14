@@ -31,9 +31,12 @@ $rows = Palestra::Edit($id);
         <div class="col s12">
             <h3 class="header indigo-text text-darken-4">Editar Palestra</h3>
 
-            <form action="inc/edit.php" method="post">
+            <form action="inc/rot_edit.php" method="post">
 
-                <?php foreach ($rows as $row) { ?>
+            <?php foreach ($rows as $row) { ?>
+            
+            <input name="id_palestra" type="hidden" value="<?= $row->id ?>">
+
             <div class="row">
                 <div class="input-field col s12">
                     <input name= "titulo_palestra" type="text" value="<?= $row->titulo_palestra ?>" class="validate">
@@ -69,19 +72,20 @@ $rows = Palestra::Edit($id);
                     </div>
                 </div>
             </div>
+            <button class="btn blue waves-effect waves-light" type="submit" name="action">Salvar Edição
+                <i class="material-icons left">save</i>
+            </button>
             <a href="dash"class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
-            <a type="submit"class="waves-effect waves-light btn blue"><i class="material-icons left">send</i>Cadastrar</a>
+            </form>
             <?php } ?>
             </form>
     
-        
-
-
-
-
-    
         </div>
     </div> <!-- Fim DIV Row -->
+
+    <!-- Footer  -->
+    <?php include("req/footer.php"); ?> 
+        
 
 
     <!--JavaScript at end of body for optimized loading-->
