@@ -19,7 +19,11 @@
         }else{
             include '404.php';
         }
-        //var_dump($file);
+        // echo "<pre>";
+        // var_dump($file);
+        // echo ">br>";
+        // var_dump($url);
+        // echo "</pre>";
     ?>
 <!-- </body>
 </html> -->

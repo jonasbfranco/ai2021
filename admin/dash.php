@@ -28,7 +28,7 @@ require 'inc/class.php';
             <h3 class="header indigo-text text-darken-4">Dashboard</h3>
             <!-- <a href="new.php" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a> -->
             <a href="new" class="waves-effect waves-light btn blue"><i class="material-icons left">add</i>Nova Palestra</a>
-            <table class="striped">
+            <table class="highlight">
                 <thead>
                     <tr>
                     <th scope="col">Titulo</th>
@@ -40,35 +40,65 @@ require 'inc/class.php';
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($showpalestras as $showpalestra)
+                    <?php
+                        $showpalestras = Palestra::Show();
+                        foreach ($showpalestras as $showpalestra){
+                    ?>
                     <tr>
-                    <td>{{ $showpalestra->titulo }}</td>
-                    <td>{{ $showpalestra->duracao }}</td>
-                    <td>{{ $showpalestra->caminho_video }}</td>
-                    <td>{{ $showpalestra->data_liberacao }}</td>                
+                    <td><?= $showpalestra->titulo_palestra ?></td>
+                    <td><?= $showpalestra->nome_palestra ?></td>
+                    <td><?= $showpalestra->duracao_palestra ?></td>
+                    <td><?= $showpalestra->data_liberacao ?></td>                
                     <td><a class="waves-effect waves-light btn orange" 
-                            href="edit">
+                            href="edit.php?id=<?= $showpalestra->id ?>">
                             <i class="material-icons left">edit</i>Editar</a>
                     </td>
                     <td>
                         <form action="/admin/delete/{{ $showpalestra->id }}" method="post">
-                            @csrf
-                            @method('DELETE')
                             <a class="waves-effect waves-light btn red" type="submit"><i class="material-icons left">delete</i>Excluir</a>
                         </form>
                     </tr>
-                    @endforeach
+                    <?php
+                        }
+                    ?>
                 </tbody>
             </table>
-
+            
         </div> <!-- Fim DIV Col S12 -->
+
+       
     </div> <!-- Fim DIV Row -->
 
-     <?php include("req/footer.php"); ?> 
+    <!-- Footer  -->
+    <?php include("req/footer.php"); ?> 
+        
+     
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    
+    <?php 
+
+    if(isset($_SESSION['msg_cad'])){ ?>
+
+        <script>
+            //Toasts ( Mensagens para o Usuário ) -->
+            var toastHTML = '<span><?= $_SESSION['msg_cad'] ?></span>';
+            M.toast({html: toastHTML});
+        </script>
+        <?php unset($_SESSION['msg_cad']); 
+    } ?>
+
+    
+    <script>
+        // Get toast DOM Element, get instance, then call dismiss function
+        var toastElement = document.querySelector('.toast');
+        var toastInstance = M.Toast.getInstance(toastElement);
+        //toastInstance.dismiss();
+    </script>
+
 
 </body>
 </html>

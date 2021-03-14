@@ -32,9 +32,9 @@ if (!isset($_SESSION)) {session_start();}
 
     <div class="row container">
         <div class="col s12">
-            <h3 class="header indigo-text text-darken-4" style="margin-top:200px;">Login</h3>
+            <h2 class="header indigo-text text-darken-4" style="margin-top:200px;">Login</h2>
 
-            <form action="inc/verify.php" method="post">
+            <form action="inc/rot_log.php" method="post">
             <div class="row">
                 <div class="input-field col s12">
                     <input name="login" type="text" class="">
@@ -47,7 +47,7 @@ if (!isset($_SESSION)) {session_start();}
                     <label>Digite sua senha</label>
                 </div>
             </div>
-            <button class="btn purple waves-effect waves-light" type="submit" name="action">Entrar no Sistema
+            <button class="btn btn-large purple waves-effect waves-light" type="submit" name="action">Entrar no Sistema
                 <i class="material-icons left">lock_open</i>
             </button>
 
@@ -70,7 +70,6 @@ if (!isset($_SESSION)) {session_start();}
     unset($_SESSION['limite']);
     unset($_SESSION['sessao_usuario']);
     session_destroy();
-
 
     ?> 
 

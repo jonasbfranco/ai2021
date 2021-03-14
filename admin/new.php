@@ -27,7 +27,7 @@ require 'inc/class.php';
         <div class="col s12">
             <h3 class="header indigo-text text-darken-4">Cadastrar Palestra</h3>
 
-            <form action="" >
+            <form action="inc/rot_cad.php" method="post">
             <div class="row">
                 <div class="input-field col s12">
                     <input name= "titulo_palestra" type="text" class="validate">
@@ -63,8 +63,10 @@ require 'inc/class.php';
                     </div>
                 </div>
             </div>
+            <button class="btn blue waves-effect waves-light" type="submit" name="action">Cadastrar
+                <i class="material-icons left">send</i>
+            </button>
             <a href="dash"class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
-            <a type="submit"class="waves-effect waves-light btn blue"><i class="material-icons left">send</i>Cadastrar</a>
             </form>
     
         

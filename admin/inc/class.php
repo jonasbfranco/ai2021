@@ -6,6 +6,12 @@
 //===================================================
 abstract class BancoDados{
 
+        public static $pdo;
+
+        private function __construct() {
+            //
+        }
+
         // const host      = '172.0.0.111';
         // const dbname    = 'ai2021';
         // const user      = 'acoes';
@@ -16,19 +22,23 @@ abstract class BancoDados{
         const user      = 'root';
         const password  = '';
 	
-        static function conectar(){
+        public static function conectar(){
             try {
-                $pdo = new PDO("mysql:host=".Self::host.";dbname=".Self::dbname.";charset=utf8",
+                if (!isset(self::$pdo)) {
+                Self::$pdo = new PDO("mysql:host=".Self::host.";dbname=".Self::dbname.";charset=utf8",
                 Self::user,
                 Self::password);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                return $pdo;
+                Self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                }
+                
+                return Self::$pdo;
 
             } catch (PDOException $e) {
                 echo "Error: ".$e->getMessage();
             }
         }
     }
+
 
 /*
 TESTE PARA VERIFICAR SE ESTA CONECTANDO NO BANCO DE DADOS 
@@ -47,7 +57,7 @@ abstract class Usuario {
     static function Logar($login, $senha) {   
         try {
             $conexao = BancoDados::conectar();
-            $sessao = $conexao->prepare('SELECT * FROM usuario WHERE nome_usuario = :nome_usuario and senha_usuario = :senha_usuario LIMIT 1');
+            $sessao = $conexao->prepare('SELECT * FROM usuarios WHERE nome_usuario = :nome_usuario and senha_usuario = :senha_usuario LIMIT 1');
             $sessao->bindValue(':nome_usuario',$login);
             $sessao->bindValue(':senha_usuario',$senha);
             if($sessao->execute()){
@@ -65,7 +75,7 @@ abstract class Usuario {
                     return $row;
                 } else {
                     // mensagem
-                    header('Location: ../index.php');
+                    header('Location: ../');
                 }
             };
             //$sessao = $sessao->fetch(PDO::FETCH_OBJ);
@@ -83,7 +93,7 @@ abstract class Usuario {
 
     static function Logout() {
       
-        header('Location: ../indexxx.php');
+        header('Location: ../.php');
     }
 
 
@@ -94,24 +104,66 @@ abstract class Usuario {
 
 
 //===================================================
-// Conexao com banco de Dados MySql
+// Cadastrar Palestra
 //===================================================
-abstract class Cadastro{
-    static function Aluno($nome, $cartao){
+abstract class Palestra{
+    static function Cadastro($titulo_palestra, $nome_palestra, $duracao_palestra, $data_liberacao){
         try {
             $conexao = BancoDados::conectar();
-            $inserir = $conexao->prepare('INSERT INTO funcionarios (nome,cartao,data) VALUES (:nome,:cartao,now())');
-            $inserir->bindValue(':nome',$nome);
-            $inserir->bindValue(':cartao',$cartao);
-            $inserir->execute();
+            $cad = $conexao->prepare('INSERT INTO palestras (titulo_palestra,nome_palestra,duracao_palestra,data_liberacao,data_cadastro)
+                                      VALUES (:titulo_palestra,:nome_palestra,:duracao_palestra,:data_liberacao,NOW())');
+            $cad->bindValue(':titulo_palestra',$titulo_palestra);
+            $cad->bindValue(':nome_palestra',$nome_palestra);
+            $cad->bindValue(':duracao_palestra',$duracao_palestra);
+            $cad->bindValue(':data_liberacao',$data_liberacao);
+            $cad->execute();
 
-            return $inserir;
+            return $cad;
 
         } catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         } 
     }
+
+
+    static function Show(){
+        try {
+            $conexao = BancoDados::conectar();
+            $show = $conexao->prepare('SELECT * FROM palestras ORDER BY titulo_palestra ASC');
+            $show->execute();
+            $show = $show->fetchAll(PDO::FETCH_OBJ);
+
+            return $show;
+
+        } catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        } 
+    }
+
+    static function Edit($id){
+        try {
+            $conexao = BancoDados::conectar();
+            $edit = $conexao->prepare("SELECT * FROM palestras WHERE id = $id LIMIT 1");
+            // SELECT * FROM funcionarios WHERE nome LIKE '%Jonas%';
+            // SELECT * FROM palestras WHERE id LIKE '%$id%' ORDER BY nome ASC
+            //$edit->bindValue(':id',$id);
+            $edit->execute();
+            $edit = $edit->fetchall(PDO::FETCH_OBJ);
+            //$lista = $lista->fetch(PDO::FETCH_ASSOC);
+            return $edit;
+
+        } catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        } 
+    }
+
+
 }
+
+// Testando a inserçao de dados
+//$adicionar = Palestra::Cadastro('Teste Video','teste_video.mp4', 6000, '2021/03/14');
+
+
 
 
 ?>

@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {session_start();}
 
 if (!$_SESSION['sessao_usuario']){
-    header('Location: ./log');
+    header('Location: ./');
 }
 
 if($_SESSION['registro']){
@@ -14,7 +14,7 @@ if ($segundos > $_SESSION['limite']) {
     unset($_SESSION[ 'limite']);
     unset($_SESSION[ 'sessao_usuario']);
     session_destroy();
-    header('Location: ./log');
+    header('Location: ./');
 } else {
     $_SESSION[ 'registro'] = time();
 }
