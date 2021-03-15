@@ -15,75 +15,77 @@ require 'inc/class.php';
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>            
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> 
+    
 </head>
 <body>
 
 
     <?php include("req/nav.php"); ?> 
         
+    <div class="div-customizada">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="header indigo-text text-darken-4">Dashboard</h3>
+                <!-- <a href="new.php" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+                <a href="new" class="waves-effect waves-light btn blue"><i class="material-icons left">add</i>Nova Palestra</a>
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Nome do Video</th>
+                        <th scope="col">Duração</th>
+                        <th scope="col">Data da Liberação</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $showpalestras = Palestra::Show();
+                            foreach ($showpalestras as $showpalestra){
+                        ?>
+                        <tr>
+                        <td><?= $showpalestra->titulo_palestra ?></td>
+                        <td><?= $showpalestra->nome_palestra ?></td>
+                        <td><?= $showpalestra->duracao_palestra ?></td>
+                        <td><?= date('d/m/Y', strtotime($showpalestra->data_liberacao)); ?></td>                
+                        <td><a class="waves-effect waves-light btn orange" 
+                                href="edit.php?id=<?= $showpalestra->id ?>">
+                                <i class="material-icons left">edit</i>Editar
+                            </a>
+                        </td>
+                        <td>
+                            <a class="waves-effect waves-light btn red modal-trigger" 
+                                href="#modal<?= $showpalestra->id ?>">
+                                <i class="material-icons left">delete</i>Excluir
+                            </a>
+                        </tr>
 
-    <div class="row">
-        <div class="col s12">
-            <h3 class="header indigo-text text-darken-4">Dashboard</h3>
-            <!-- <a href="new.php" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a> -->
-            <a href="new" class="waves-effect waves-light btn blue"><i class="material-icons left">add</i>Nova Palestra</a>
-            <table class="highlight">
-                <thead>
-                    <tr>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Nome do Video</th>
-                    <th scope="col">Duração</th>
-                    <th scope="col">Data da Liberação</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Excluir</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $showpalestras = Palestra::Show();
-                        foreach ($showpalestras as $showpalestra){
-                    ?>
-                    <tr>
-                    <td><?= $showpalestra->titulo_palestra ?></td>
-                    <td><?= $showpalestra->nome_palestra ?></td>
-                    <td><?= $showpalestra->duracao_palestra ?></td>
-                    <td><?= $showpalestra->data_liberacao ?></td>                
-                    <td><a class="waves-effect waves-light btn orange" 
-                            href="edit.php?id=<?= $showpalestra->id ?>">
-                            <i class="material-icons left">edit</i>Editar
-                        </a>
-                    </td>
-                    <td>
-                        <a class="waves-effect waves-light btn red modal-trigger" 
-                            href="#modal<?= $showpalestra->id ?>">
-                            <i class="material-icons left">delete</i>Excluir
-                        </a>
-                    </tr>
-
-                    <!-- Modal Structure -->
-                    <div id="modal<?= $showpalestra->id ?>" class="modal">
-                        <div class="modal-content">
-                        <h5>Tem certeza que deseja excluir ?</h5>
-                        <p>Palesta - <strong><?= $showpalestra->titulo_palestra ?></strong></p>
+                        <!-- Modal Structure -->
+                        <div id="modal<?= $showpalestra->id ?>" class="modal">
+                            <div class="modal-content">
+                            <h5>Tem certeza que deseja excluir ?</h5>
+                            <p>Palesta - <strong><?= $showpalestra->titulo_palestra ?></strong></p>
+                            </div>
+                            <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-red btn-flat">NÃO</a>
+                            <a href="inc/rot_del.php?id=<?= $showpalestra->id ?>" class="modal-close waves-effect waves-green btn-flat">SIM</a>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-red btn-flat">NÃO</a>
-                        <a href="inc/rot_del.php?id=<?= $showpalestra->id ?>" class="modal-close waves-effect waves-green btn-flat">SIM</a>
-                        </div>
-                    </div>
 
 
-                    <?php
-                        }
-                    ?>
-                </tbody>
-            </table>
-            
-        </div> <!-- Fim DIV Col S12 -->
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+                </table>
+                
+            </div> <!-- Fim DIV Col S12 -->
 
-       
-    </div> <!-- Fim DIV Row -->
+        </div> <!-- Fim DIV Row -->
+
+    </div>
 
 
     <!-- Footer  -->

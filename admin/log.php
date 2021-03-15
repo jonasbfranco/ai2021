@@ -13,18 +13,6 @@ if (!isset($_SESSION)) {session_start();}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>  
-
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1 0 auto;
-        }
-    </style>
               
 </head>
 <body>
@@ -62,18 +50,8 @@ if (!isset($_SESSION)) {session_start();}
 
 
     <!--  Footer  -->
-
-        <footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
-        <div class="footer-copyright">
-        <div class="container">
-        <div class="row">
-        © 2021 Copyright - Jonas B. Franco - TI
-        <a class="grey-text text-lighten-4 right" href="https://jonasbfranco.github.io/" target="_blank">
-        <i class="material-icons left">code</i>GitHub</a>
-        </div>
-        </div>
-        </div>
-    </footer>
+    <?php include("req/footer.php"); ?> 
+        
 
 
 <?php    
