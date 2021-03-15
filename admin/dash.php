@@ -51,7 +51,7 @@ require 'inc/class.php';
                         <td><?= $showpalestra->duracao_palestra ?></td>
                         <td><?= date('d/m/Y', strtotime($showpalestra->data_liberacao)); ?></td>                
                         <td><a class="waves-effect waves-light btn orange" 
-                                href="edit.php?id=<?= $showpalestra->id ?>">
+                                href="edit/<?= $showpalestra->id ?>">
                                 <i class="material-icons left">edit</i>Editar
                             </a>
                         </td>

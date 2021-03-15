@@ -4,7 +4,8 @@ include 'inc/verifica_session.php';
 
 require 'inc/class.php';
 
-$id = $_GET['id'];
+//$id = $_GET['id'];
+$id = $url[1];
 $rows = Palestra::Edit($id);
 
 ?>
@@ -19,7 +20,7 @@ $rows = Palestra::Edit($id);
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>            
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>            
 </head>
 <body>
 
@@ -31,7 +32,7 @@ $rows = Palestra::Edit($id);
         <div class="col s12">
             <h3 class="header indigo-text text-darken-4">Editar Palestra</h3>
 
-            <form action="inc/rot_edit.php" method="post">
+            <form action="../inc/rot_edit.php" method="post">
 
             <?php foreach ($rows as $row) { ?>
             
@@ -75,7 +76,7 @@ $rows = Palestra::Edit($id);
             <button class="btn blue waves-effect waves-light" type="submit" name="action">Salvar Edição
                 <i class="material-icons left">save</i>
             </button>
-            <a href="dash"class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
+            <a href="../dash"class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
             </form>
             <?php } ?>
             </form>
@@ -89,8 +90,7 @@ $rows = Palestra::Edit($id);
 
 
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
 
 </body>
 </html>
-
