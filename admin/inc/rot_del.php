@@ -17,6 +17,7 @@ if(isset($_GET['id'])){
         //echo "Cadastrado com sucesso" .$titulo_palestra;
         //header('Location: ./dash.php');
         header('Location: ../dash');
+        unset($deletar);
     }else{
         //echo "Erro ao cadastrar";
         $_SESSION['msg_del'] = "Não foi possivel excluir a palestra";
@@ -26,12 +27,18 @@ if(isset($_GET['id'])){
         // echo $video;
         //header('Location: ./dash');
         header('Location: ../dash');
+        unset($deletar);
     }
     }else{
     $_SESSION['msg_del'] = "Não foi possivel excluir a palestra";
     header('Location: ../dash');
+    unset($deletar);
 }
 
+
+// deletar as variaveis
+unset($_GET['id']);
+unset($id_palestra);
 
 
 

@@ -21,6 +21,7 @@ if(isset($_POST['id_palestra'],$_POST['titulo_palestra'],$_POST['nome_palestra']
         //echo "Cadastrado com sucesso" .$titulo_palestra;
         //header('Location: ./dash.php');
         header('Location: ../dash');
+        unset($editar);
     }else{
         //echo "Erro ao cadastrar";
         $_SESSION['msg_edit'] = "Não foi possivel editar a palestra ".$titulo_palestra;
@@ -30,13 +31,26 @@ if(isset($_POST['id_palestra'],$_POST['titulo_palestra'],$_POST['nome_palestra']
         // echo $video;
         //header('Location: ./dash');
         header('Location: ../dash');
+        unset($editar);
     }
     }else{
     $_SESSION['msg_edit'] = "Não foi possivel editar a palestra ".$titulo_palestra;
     header('Location: ../dash');
+    unset($editar);
 }
 
 
+// deletar as variaveis
+unset($_POST['id_palestra']);
+unset($_POST['titulo_palestra']);
+unset($_POST['nome_palestra']);
+unset($_POST['duracao_palestra']);
+unset($_POST['data_liberacao']);
+unset($id_palestra);
+unset($titulo_palestra);
+unset($nome_palestra);
+unset($duracao_palestra);
+unset($data_liberacao);
 
 
 ?>

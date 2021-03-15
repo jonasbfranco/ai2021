@@ -33,6 +33,8 @@ if((!empty($_POST['login'])) and (!empty($_POST['senha']))){
 
 
 // Destruir as variaveis
+unset($_POST['login']);
+unset($_POST['senha']);
 unset($login);
 unset($senha);
 
