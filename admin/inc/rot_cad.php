@@ -6,16 +6,23 @@ require 'class.php';
 
 
 
-if(isset($_POST['titulo_palestra'],$_POST['nome_palestra'],$_POST['duracao_palestra'],$_POST['data_liberacao'])){
+if(isset($_POST['titulo_palestra'],$_POST['duracao_palestra'],$_POST['data_liberacao'])){
     
-    
+    // Tratativa do upload do arquivo(video ou imagem)
+    $nome_arquivo       = $_FILES['arquivo']['name'];
+    $caminho_atual      = $_FILES['arquivo']['tmp_name'];
+    $caminho_salvar     = '/opt/lampp/htdocs/ai2021/palestras/'.$nome_arquivo;
+
     $titulo_palestra    = $_POST['titulo_palestra'];
-    $nome_palestra      = $_POST['nome_palestra'];
     $duracao_palestra   = $_POST['duracao_palestra'];
     $data_liberacao     = $_POST['data_liberacao'];
+    
+    // Mover arquivo para a pasta
+    move_uploaded_file($caminho_atual, $caminho_salvar);
 
 
-    $inserir = Palestra::Cadastro($titulo_palestra, $nome_palestra, $duracao_palestra, $data_liberacao);
+
+    $inserir = Palestra::Cadastro($titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao);
     if ($inserir) {
         $_SESSION['msg_cad'] = "Palestra ".$titulo_palestra." cadastrada com sucesso";
         //echo "Cadastrado com sucesso" .$titulo_palestra;

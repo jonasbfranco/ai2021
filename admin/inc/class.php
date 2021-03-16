@@ -107,13 +107,13 @@ abstract class Usuario {
 // Cadastrar Palestra
 //===================================================
 abstract class Palestra{
-    static function Cadastro($titulo_palestra, $nome_palestra, $duracao_palestra, $data_liberacao){
+    static function Cadastro($titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao){
         try {
             $conexao = BancoDados::conectar();
             $cad = $conexao->prepare('INSERT INTO palestras (titulo_palestra,nome_palestra,duracao_palestra,data_liberacao,data_cadastro)
-                                      VALUES (:titulo_palestra,:nome_palestra,:duracao_palestra,:data_liberacao,NOW())');
+                                      VALUES (:titulo_palestra,:nome_arquivo,:duracao_palestra,:data_liberacao,NOW())');
             $cad->bindValue(':titulo_palestra',$titulo_palestra);
-            $cad->bindValue(':nome_palestra',$nome_palestra);
+            $cad->bindValue(':nome_arquivo',$nome_arquivo);
             $cad->bindValue(':duracao_palestra',$duracao_palestra);
             $cad->bindValue(':data_liberacao',$data_liberacao);
             $cad->execute();
@@ -165,15 +165,15 @@ abstract class Palestra{
 //===================================================
 // Atualizar a Palestra
 //===================================================
-    static function Update($id_palestra, $titulo_palestra, $nome_palestra, $duracao_palestra, $data_liberacao){
+    static function Update($id_palestra, $titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao){
         try {
             $conexao = BancoDados::conectar();
-            $update = $conexao->prepare('UPDATE palestras SET titulo_palestra = :titulo_palestra, nome_palestra = :nome_palestra,
+            $update = $conexao->prepare('UPDATE palestras SET titulo_palestra = :titulo_palestra, nome_palestra = :nome_arquivo,
                                             duracao_palestra = :duracao_palestra, data_liberacao = :data_liberacao, data_alteracao = NOW() 
                                         WHERE id = :id_palestra');
             $update->bindValue(':id_palestra',$id_palestra);
             $update->bindValue(':titulo_palestra',$titulo_palestra);
-            $update->bindValue(':nome_palestra',$nome_palestra);
+            $update->bindValue(':nome_arquivo',$nome_arquivo);
             $update->bindValue(':duracao_palestra',$duracao_palestra);
             $update->bindValue(':data_liberacao',$data_liberacao);
             $update->execute();

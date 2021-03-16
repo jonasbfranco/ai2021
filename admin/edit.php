@@ -32,7 +32,7 @@ $rows = Palestra::Edit($id);
         <div class="col s12">
             <h3 class="header indigo-text text-darken-4">Editar Palestra</h3>
 
-            <form action="../inc/rot_edit.php" method="post">
+            <form action="../inc/rot_edit.php" method="post" enctype="multipart/form-data">
 
             <?php foreach ($rows as $row) { ?>
             
@@ -42,12 +42,6 @@ $rows = Palestra::Edit($id);
                 <div class="input-field col s12">
                     <input name= "titulo_palestra" type="text" value="<?= $row->titulo_palestra ?>" class="validate">
                     <label>Titulo da Palestra</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input name="nome_palestra" type="text" value="<?= $row->nome_palestra ?>" class="validate">
-                    <label>Nome Completo da palestra</label>
                 </div>
             </div>
             <div class="row">
@@ -64,12 +58,10 @@ $rows = Palestra::Edit($id);
             </div>
             <div class="row">
                 <div class="file-field input-field col s12">
-                    <div class="btn">
-                        <span>Video</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                    <div class="btn"><span>Video</span><input type="file" name="arquivo"></div>
+                    <div class="file-path-wrapper"><input class="file-path validate" type="text" value="<?= $row->nome_palestra ?>"></div>
+                    <div class="video-container">
+                        <iframe width="253" height="180" src="../../palestras/<?= $row->nome_palestra ?>" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

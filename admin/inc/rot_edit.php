@@ -6,16 +6,25 @@ require 'class.php';
 
 
 
-if(isset($_POST['id_palestra'],$_POST['titulo_palestra'],$_POST['nome_palestra'],$_POST['duracao_palestra'],$_POST['data_liberacao'])){
+if(isset($_POST['id_palestra'],$_POST['titulo_palestra'],$_POST['duracao_palestra'],$_POST['data_liberacao'])){
+    
     
     $id_palestra        = $_POST['id_palestra'];
     $titulo_palestra    = $_POST['titulo_palestra'];
-    $nome_palestra      = $_POST['nome_palestra'];
     $duracao_palestra   = $_POST['duracao_palestra'];
     $data_liberacao     = $_POST['data_liberacao'];
 
+    // Tratativa do upload do arquivo(video ou imagem)
+    $nome_arquivo       = $_FILES['arquivo']['name'];
+    $caminho_atual      = $_FILES['arquivo']['tmp_name'];
+    $caminho_salvar     = '/opt/lampp/htdocs/ai2021/palestras/'.$nome_arquivo;
 
-    $editar = Palestra::Update($id_palestra, $titulo_palestra, $nome_palestra, $duracao_palestra, $data_liberacao);
+
+    // Mover arquivo para a pasta
+    move_uploaded_file($caminho_atual, $caminho_salvar);
+
+
+    $editar = Palestra::Update($id_palestra, $titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao);
     if ($editar) {
         $_SESSION['msg_edit'] = "Palestra ".$titulo_palestra." editada com sucesso";
         //echo "Cadastrado com sucesso" .$titulo_palestra;
