@@ -70,7 +70,7 @@ require 'inc/class.php';
                             </div>
                             <div class="modal-footer">
                             <a href="#!" class="modal-close waves-effect waves-red btn-flat">NÃO</a>
-                            <a href="inc/rot_del.php?id=<?= $showpalestra->id ?>" class="modal-close waves-effect waves-green btn-flat">SIM</a>
+                            <a href="inc/rot_del.php?id=<?= $showpalestra->id ?>&del=<?= $showpalestra->nome_palestra ?>" class="modal-close waves-effect waves-green btn-flat">SIM</a>
                             </div>
                         </div>
 

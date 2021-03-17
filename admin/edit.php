@@ -65,6 +65,20 @@ $rows = Palestra::Edit($id);
                     </div>
                 </div>
             </div>
+            
+            
+            <!-- ExGuardar arquivo Anrigo, que esta sendo substituido -->
+            <?php $_SESSION['arquivo'] = $row->nome_palestra ?>
+
+
+            <!-- Excluir arquivo Antigo, que esta sendo substituido -->
+            <?php $_SESSION['arquivo_antigo'] = $row->nome_palestra ?>
+
+            <?php
+            echo $_SESSION['arquivo'];
+            echo $_SESSION['arquivo_antigo']; 
+            ?>
+
             <button class="btn blue waves-effect waves-light" type="submit" name="action">Salvar Edição
                 <i class="material-icons left">save</i>
             </button>

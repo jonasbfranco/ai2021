@@ -17,11 +17,24 @@ if(isset($_POST['id_palestra'],$_POST['titulo_palestra'],$_POST['duracao_palestr
     // Tratativa do upload do arquivo(video ou imagem)
     $nome_arquivo       = $_FILES['arquivo']['name'];
     $caminho_atual      = $_FILES['arquivo']['tmp_name'];
-    $caminho_salvar     = '/opt/lampp/htdocs/ai2021/palestras/'.$nome_arquivo;
+    $caminho_salvar     = '/var/www/html/ai2021/palestras/'.$nome_arquivo;
 
+    // Verificar se o usuario nao alterou o video ou foto
+    if (!empty($nome_arquivo)) {
+        // Mover arquivo para a pasta
+        move_uploaded_file($caminho_atual, $caminho_salvar);
+    } else {
+        $nome_arquivo = $_SESSION['arquivo'];
+    }
 
-    // Mover arquivo para a pasta
-    move_uploaded_file($caminho_atual, $caminho_salvar);
+    // Se o usuario alterou o video ou a foto
+    if (($nome_arquivo) != ($_SESSION['arquivo_antigo'])) {
+    // Nome arquivo antigo
+    $caminho_arquivo_antigo = '/var/www/html/ai2021/palestras/'.$_SESSION['arquivo_antigo'];
+
+    // remover arquivo antigo
+    unlink($caminho_arquivo_antigo);
+    }
 
 
     $editar = Palestra::Update($id_palestra, $titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao);
@@ -55,6 +68,7 @@ unset($_POST['titulo_palestra']);
 unset($_POST['nome_palestra']);
 unset($_POST['duracao_palestra']);
 unset($_POST['data_liberacao']);
+unset($_SESSION['arquivo_antigo']);
 unset($id_palestra);
 unset($titulo_palestra);
 unset($nome_palestra);

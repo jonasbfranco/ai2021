@@ -27,7 +27,7 @@ require 'inc/class.php';
         <div class="col s12">
             <h3 class="header indigo-text text-darken-4">Cadastrar Palestra</h3>
 
-            <form action="inc/upload.php" method="post" enctype="multipart/form-data">
+            <form action="inc/rot_cad.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s12">
                     <input name= "titulo_palestra" type="text" class="validate">

@@ -11,7 +11,7 @@ if(isset($_POST['titulo_palestra'],$_POST['duracao_palestra'],$_POST['data_liber
     // Tratativa do upload do arquivo(video ou imagem)
     $nome_arquivo       = $_FILES['arquivo']['name'];
     $caminho_atual      = $_FILES['arquivo']['tmp_name'];
-    $caminho_salvar     = '/opt/lampp/htdocs/ai2021/palestras/'.$nome_arquivo;
+    $caminho_salvar     = '/var/www/html/ai2021/palestras/'.$nome_arquivo;
 
     $titulo_palestra    = $_POST['titulo_palestra'];
     $duracao_palestra   = $_POST['duracao_palestra'];

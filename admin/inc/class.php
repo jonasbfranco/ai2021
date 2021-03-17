@@ -12,15 +12,15 @@ abstract class BancoDados{
             //
         }
 
-        // const host      = '172.0.0.111';
-        // const dbname    = 'ai2021';
-        // const user      = 'acoes';
-        // const password  = 'C0l0mb0#';
-
-        const host      = 'localhost';
+        const host      = '172.0.0.111';
         const dbname    = 'ai2021';
         const user      = 'root';
-        const password  = '';
+        const password  = 'C0l0mb0#';
+
+        //const host      = 'localhost';
+        //const dbname    = 'ai2021';
+        //const user      = 'root';
+        //const password  = '';
 	
         public static function conectar(){
             try {

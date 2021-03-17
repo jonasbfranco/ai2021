@@ -9,6 +9,12 @@ require 'class.php';
 if(isset($_GET['id'])){
     
     $id_palestra = $_GET['id'];
+    $del_palestra = $_GET['del'];
+
+
+    // remover arquivo antigo
+    unlink('/var/www/html/ai2021/palestras/'.$del_palestra);
+
 
 
     $deletar = Palestra::Delete($id_palestra);
@@ -39,7 +45,7 @@ if(isset($_GET['id'])){
 // deletar as variaveis
 unset($_GET['id']);
 unset($id_palestra);
-
+unset($_SESSION['arquivo_antigo']);
 
 
 ?>
