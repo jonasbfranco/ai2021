@@ -67,7 +67,11 @@ $rows = Palestra::Edit($id);
             </div>
             
             
+<<<<<<< HEAD
+            <!-- Guardar arquivo Anrigo, que esta sendo substituido -->
+=======
             <!-- ExGuardar arquivo Anrigo, que esta sendo substituido -->
+>>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
             <?php $_SESSION['arquivo'] = $row->nome_palestra ?>
 
 
@@ -75,8 +79,13 @@ $rows = Palestra::Edit($id);
             <?php $_SESSION['arquivo_antigo'] = $row->nome_palestra ?>
 
             <?php
+<<<<<<< HEAD
+            /* echo $_SESSION['arquivo'];
+            echo $_SESSION['arquivo_antigo'];  */
+=======
             echo $_SESSION['arquivo'];
             echo $_SESSION['arquivo_antigo']; 
+>>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
             ?>
 
             <button class="btn blue waves-effect waves-light" type="submit" name="action">Salvar Edição

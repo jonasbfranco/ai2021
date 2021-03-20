@@ -12,6 +12,17 @@ abstract class BancoDados{
             //
         }
 
+<<<<<<< HEAD
+        /* const host      = '';
+        const dbname    = 'ai2021';
+        const user      = 'root';
+        const password  = ''; */
+
+        const host      = 'localhost';
+        const dbname    = 'ai2021';
+        const user      = 'root';
+        const password  = '123456';
+=======
         const host      = '172.0.0.111';
         const dbname    = 'ai2021';
         const user      = 'root';
@@ -21,6 +32,7 @@ abstract class BancoDados{
         //const dbname    = 'ai2021';
         //const user      = 'root';
         //const password  = '';
+>>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
 	
         public static function conectar(){
             try {

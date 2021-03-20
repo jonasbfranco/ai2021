@@ -68,13 +68,20 @@ unset($_POST['titulo_palestra']);
 unset($_POST['nome_palestra']);
 unset($_POST['duracao_palestra']);
 unset($_POST['data_liberacao']);
+<<<<<<< HEAD
+unset($_SESSION['arquivo']);
+=======
+>>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
 unset($_SESSION['arquivo_antigo']);
 unset($id_palestra);
 unset($titulo_palestra);
 unset($nome_palestra);
 unset($duracao_palestra);
 unset($data_liberacao);
-
+unset($nome_arquivo );
+unset($caminho_atual);
+unset($caminho_salvar);
+unset($caminho_arquivo_antigo);
 
 ?>
 
