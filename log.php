@@ -13,6 +13,8 @@ if (!isset($_SESSION)) {session_start();}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="./css/materialize.min.css"  media="screen,projection"/>  
+
+    
               
 </head>
 <body>
@@ -23,8 +25,8 @@ if (!isset($_SESSION)) {session_start();}
         <div class="row">
             <div class="col s12">
 
-                <div class="row">
-                    <img class="circle" src="./imagens/user.png" width="200px" height="200px" max-width="200px">
+                <div class="row center">
+                    <img src="./imagens/logo.png">
                 </div>
 
                 <h2 class="header indigo-text text-darken-4">Login</h2>
@@ -32,7 +34,7 @@ if (!isset($_SESSION)) {session_start();}
                 <form action="./inc/rot_log.php" method="post">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="cartao" type="number" class="">
+                            <input name="cartao" type="number" class="" value="<?php if (!empty($_SESSION['cartao'])){echo $_SESSION['cartao'];}else{echo '';}  ?>">
                             <label>Digite o numero do seu cartão</label>
                         </div>
                     </div>
@@ -43,7 +45,6 @@ if (!isset($_SESSION)) {session_start();}
             </div>
         </div>        
     </div> <!-- Fim DIV Row -->
-
 
 
     <!-- Botao cadastrar novo funcionario -->
@@ -77,7 +78,8 @@ if (!isset($_SESSION)) {session_start();}
             M.toast({html: toastHTML});
         </script>
         <?php unset($_SESSION['msg_log']); 
-        header('Location: new');
+        header("refresh: 2; url=new"); 
+        //header('Location: new');
     } 
 
     // mensagem de alerta sobre edicao de palestra
@@ -120,6 +122,7 @@ if (!isset($_SESSION)) {session_start();}
     unset($_SESSION['registro']);
     unset($_SESSION['limite']);
     unset($_SESSION['sessao_usuario']);
+    unset($verificar);
     session_destroy();
 ?> 
 

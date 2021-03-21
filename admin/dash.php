@@ -1,8 +1,10 @@
 <?php
 if (!isset($_SESSION)) {session_start();}
+
 include 'inc/verifica_session.php';
 
 require 'inc/class.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +36,6 @@ require 'inc/class.php';
                         <tr>
                         <th scope="col">Titulo</th>
                         <th scope="col">Nome do Video</th>
-                        <th scope="col">Duração</th>
                         <th scope="col">Data da Liberação</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Excluir</th>
@@ -48,7 +49,6 @@ require 'inc/class.php';
                         <tr>
                         <td><?= $showpalestra->titulo_palestra ?></td>
                         <td><?= $showpalestra->nome_palestra ?></td>
-                        <td><?= $showpalestra->duracao_palestra ?></td>
                         <td><?= date('d/m/Y', strtotime($showpalestra->data_liberacao)); ?></td>                
                         <td><a class="waves-effect waves-light btn orange" 
                                 href="edit/<?= $showpalestra->id ?>">

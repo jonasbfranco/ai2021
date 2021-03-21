@@ -50,11 +50,38 @@ if (!isset($_SESSION)) {session_start();}
 
 
     <!--  Footer  -->
-    <?php include("req/footer.php"); ?> 
+    <?php include("req/footer.php"); ?>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
         
 
+<?php
 
-<?php    
+    //===================================================
+    // Inicio da tratativa dos alertas (mensagens, toats)
+    //===================================================
+
+    // mensagem de alerta sobre casdastro de palestra
+    if(isset($_SESSION['msg_log'])){ ?>
+
+        <script>
+            //Toasts ( Mensagens para o Usuário ) -->
+            var toastHTML = '<span><?= $_SESSION['msg_log'] ?></span>';
+            M.toast({html: toastHTML});
+        </script>
+        <?php unset($_SESSION['msg_log']); 
+        //header("refresh: 2; url=new"); 
+        //header('Location: new');
+    } 
+
+//===================================================
+// Fim da tratativa dos alertas (mensagens, toats)
+//===================================================
+
+
+  
     unset($_SESSION['registro']);
     unset($_SESSION['limite']);
     unset($_SESSION['sessao_usuario']);
@@ -62,8 +89,6 @@ if (!isset($_SESSION)) {session_start();}
 ?> 
 
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
 </html>

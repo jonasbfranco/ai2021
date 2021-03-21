@@ -24,10 +24,14 @@ if((!empty($_POST['login'])) and (!empty($_POST['senha']))){
     // echo $video;
     //echo "Deu merda";
     //header('Location: index.php');
+    $_SESSION['msg_log'] = "Não foi possivel efetuar o login";
+    $_SESSION['cartao'] = $cartao;
     header('Location: ../');
     }
 } else {
     //$_SESSION['msgnok'] = "Houve algum problema, tente novamente!!!";
+    $_SESSION['msg_log'] = "Não foi possivel efetuar o login";
+    $_SESSION['cartao'] = $cartao;
     header('Location: ../');
 }
 

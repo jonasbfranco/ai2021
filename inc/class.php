@@ -66,7 +66,7 @@ abstract class Funcionario {
 
                     if($_POST['cartao'] == $row->cartao_funcionario){
                     //sessao de tempo para expirar comeca aqui
-                    $tempolimite = 60; //equivale a 10 minuto
+                    $tempolimite = 5400; //600 equivale a 10 minuto
                     $_SESSION['registro'] = time();
                     $_SESSION['limite'] = $tempolimite;
                     $_SESSION['sessao_usuario'] = $row->nome_funcionario;
@@ -101,6 +101,24 @@ abstract class Funcionario {
             $cad->execute();
 
             return $cad;
+
+        } catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        } 
+    }
+
+
+//===================================================
+// Verificar se o Funcionario ja esta cadastrado
+//===================================================
+    static function Verificar($cartao_funcionario){
+        try {
+            $conexao = BancoDados::conectar();
+            $ver = $conexao->prepare('SELECT * FROM funcionarios WHERE cartao_funcionario = :cartao_funcionario LIMIT 1');
+            $ver->bindValue(':cartao_funcionario',$cartao_funcionario);
+            $ver->execute();
+
+            return $ver;
 
         } catch (PDOException $e) {
             echo "Error: ".$e->getMessage();

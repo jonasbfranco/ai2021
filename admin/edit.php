@@ -44,12 +44,12 @@ $rows = Palestra::Edit($id);
                     <label>Titulo da Palestra</label>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="input-field col s12">
                     <input name="duracao_palestra" type="number" value="<?= $row->duracao_palestra ?>" class="validate">
                     <label>Duração da palestra</label>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="input-field col s12">
                     <input name="data_liberacao" type="date" value="<?= $row->data_liberacao ?>" class="validate">
@@ -67,11 +67,7 @@ $rows = Palestra::Edit($id);
             </div>
             
             
-<<<<<<< HEAD
             <!-- Guardar arquivo Anrigo, que esta sendo substituido -->
-=======
-            <!-- ExGuardar arquivo Anrigo, que esta sendo substituido -->
->>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
             <?php $_SESSION['arquivo'] = $row->nome_palestra ?>
 
 
@@ -79,21 +75,17 @@ $rows = Palestra::Edit($id);
             <?php $_SESSION['arquivo_antigo'] = $row->nome_palestra ?>
 
             <?php
-<<<<<<< HEAD
             /* echo $_SESSION['arquivo'];
             echo $_SESSION['arquivo_antigo'];  */
-=======
-            echo $_SESSION['arquivo'];
-            echo $_SESSION['arquivo_antigo']; 
->>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
             ?>
 
             <button class="btn blue waves-effect waves-light" type="submit" name="action">Salvar Edição
                 <i class="material-icons left">save</i>
             </button>
-            <a href="../dash"class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
-            </form>
+            <a href="../dash" class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Cancelar</a>
+          
             <?php } ?>
+
             </form>
     
         </div>
@@ -106,6 +98,15 @@ $rows = Palestra::Edit($id);
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
+
+
+<?php
+unset($id);
+unset($rows);
+unset($row);
+unset($url);
+?>
+
 
 </body>
 </html>

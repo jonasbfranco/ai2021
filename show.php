@@ -60,25 +60,24 @@ $date = date('d/m/Y - H:i:s');
             <div class="col s12">
                 <h4 class="header center orange-text">Clique, para assitir</h4>
                 
-                <br /><br />   
+                <br />
+                
+                
+                    <ul>
+                        <?php
+                            $showpalestras = Palestra::Show();
+                            foreach ($showpalestras as $showpalestra){
+                        ?>
+                            <li><h6><a class="blue-text" href="./video/<?= $showpalestra->id ?>"><i class="material-icons left">video_library</i><?= $showpalestra->titulo_palestra ?></a></h6></li>
+                            <!-- <li><a href="./video/<?= $showpalestra->id ?>" class="waves-effect waves-light btn-large"><?= $showpalestra->titulo_palestra ?></a></li>  -->
+                            <!-- <li><a href="./video/<?= $showpalestra->id ?>"><i class="material-icons left">video_library</i><?= $showpalestra->titulo_palestra ?></a></li> -->
+                            <!-- <li><div class="divider"></div></li> -->
+                            <li><div class="divider"></div></li>
+                        <?php
+                        }
+                        ?>          
+                    </ul>
 
-                <?php
-                    $showpalestras = Palestra::Show();
-                    foreach ($showpalestras as $showpalestra){
-                ?>
-
-                <ul>
-                    <li>
-                        <li><a href="./video/<?= $showpalestra->id ?>"><i class="material-icons left">video_library</i><?= $showpalestra->titulo_palestra ?></a></li>
-                        <!-- <li><div class="divider"></div></li> -->
-                        <br />
-                    </li>              
-                </ul>
-
-                <?php
-                }
-                ?>
-                 
             </div> <!-- Fim DIV Col S12 -->
         </div> <!-- Fim DIV Row -->
     </div>
@@ -112,7 +111,11 @@ $date = date('d/m/Y - H:i:s');
 
     </script>
 
+<?php
 
+unset($_SESSION['cartao']);
+
+?>
   
 
 </body>

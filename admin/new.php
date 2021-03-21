@@ -1,8 +1,10 @@
 <?php
 if (!isset($_SESSION)) {session_start();}
-include 'inc/verifica_session.php';
 
 require 'inc/class.php';
+
+include 'inc/verifica_session.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +36,12 @@ require 'inc/class.php';
                     <label>Titulo da Palestra</label>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="input-field col s12">
                     <input name="duracao_palestra" type="number" class="validate">
                     <label>Duração da palestra</label>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="input-field col s12">
                     <input name="data_liberacao" type="date" class="validate">

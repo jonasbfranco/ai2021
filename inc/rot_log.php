@@ -1,6 +1,6 @@
 <?php
-
 if (!isset($_SESSION)) {session_start();}
+
 include 'verifica_session.php';
 
 require 'class.php';
@@ -24,11 +24,13 @@ if((!empty($_POST['cartao']))){
     // exit;
     //header('Location: index.php');
     $_SESSION['msg_log'] = "Não foi possivel efetuar o login com o cartão ".$cartao;
+    $_SESSION['cartao'] = $cartao;
     header('Location: ../');
     }
 } else {
     //$_SESSION['msgnok'] = "Houve algum problema, tente novamente!!!";
     $_SESSION['msg_log'] = "Não foi possivel efetuar o login com o cartão ".$cartao;
+    $_SESSION['cartao'] = $cartao;
     header('Location: ../');
 }
 

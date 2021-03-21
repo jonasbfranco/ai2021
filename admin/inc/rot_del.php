@@ -13,7 +13,8 @@ if(isset($_GET['id'])){
 
 
     // remover arquivo antigo
-    unlink('/var/www/html/ai2021/palestras/'.$del_palestra);
+    // unlink('/var/www/html/ai2021/palestras/'.$del_palestra); // maquina desenvolvedor
+    unlink('/var/www/html/palestras/'.$del_palestra); // servidor
 
 
 
@@ -46,11 +47,7 @@ if(isset($_GET['id'])){
 unset($_GET['id']);
 unset($id_palestra);
 unset($_SESSION['arquivo_antigo']);
-<<<<<<< HEAD
 unset($del_palestra);
-=======
-
->>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
 
 ?>
 

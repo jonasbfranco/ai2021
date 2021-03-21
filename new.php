@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION)) {session_start();}
 
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,8 @@ if (!isset($_SESSION)) {session_start();}
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>            
 </head>
 <body>
-        
+
+     
 
     <div class="row container">
         <div class="col s12">
@@ -31,7 +33,7 @@ if (!isset($_SESSION)) {session_start();}
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="cartao_funcionario" type="number" class="validate">
+                    <input name="cartao_funcionario" type="number" value="<?php if (!empty($_SESSION['cartao'])){echo $_SESSION['cartao'];}else{echo '';}  ?>" class="validate">
                     <label>Digite o numero do seu cartão</label>
                 </div>
             </div>
@@ -94,6 +96,9 @@ if (!isset($_SESSION)) {session_start();}
         });
 
     </script>
+
+
+
 
 </body>
 </html>

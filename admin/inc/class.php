@@ -12,7 +12,6 @@ abstract class BancoDados{
             //
         }
 
-<<<<<<< HEAD
         /* const host      = '';
         const dbname    = 'ai2021';
         const user      = 'root';
@@ -22,17 +21,6 @@ abstract class BancoDados{
         const dbname    = 'ai2021';
         const user      = 'root';
         const password  = '123456';
-=======
-        const host      = '172.0.0.111';
-        const dbname    = 'ai2021';
-        const user      = 'root';
-        const password  = 'C0l0mb0#';
-
-        //const host      = 'localhost';
-        //const dbname    = 'ai2021';
-        //const user      = 'root';
-        //const password  = '';
->>>>>>> 80c4fdbfd2247426c7d7e53ea2a793e8b93b5fbc
 	
         public static function conectar(){
             try {
@@ -79,7 +67,7 @@ abstract class Usuario {
 
                     if($_POST['senha'] == $row->senha_usuario){
                     //sessao de tempo para expirar comeca aqui
-                    $tempolimite = 600; //equivale a 10 minuto
+                    $tempolimite = 600; //600 equivale a 10 minuto
                     $_SESSION['registro'] = time();
                     $_SESSION['limite'] = $tempolimite;
                     $_SESSION['sessao_usuario'] = $row->nome_usuario;
@@ -119,14 +107,14 @@ abstract class Usuario {
 // Cadastrar Palestra
 //===================================================
 abstract class Palestra{
-    static function Cadastro($titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao){
+    static function Cadastro($titulo_palestra, $nome_arquivo, $data_liberacao){
         try {
             $conexao = BancoDados::conectar();
-            $cad = $conexao->prepare('INSERT INTO palestras (titulo_palestra,nome_palestra,duracao_palestra,data_liberacao,data_cadastro)
-                                      VALUES (:titulo_palestra,:nome_arquivo,:duracao_palestra,:data_liberacao,NOW())');
+            $cad = $conexao->prepare('INSERT INTO palestras (titulo_palestra,nome_palestra,data_liberacao,data_cadastro)
+                                      VALUES (:titulo_palestra,:nome_arquivo,:data_liberacao,NOW())');
             $cad->bindValue(':titulo_palestra',$titulo_palestra);
             $cad->bindValue(':nome_arquivo',$nome_arquivo);
-            $cad->bindValue(':duracao_palestra',$duracao_palestra);
+            // $cad->bindValue(':duracao_palestra',$duracao_palestra);
             $cad->bindValue(':data_liberacao',$data_liberacao);
             $cad->execute();
 
@@ -177,16 +165,17 @@ abstract class Palestra{
 //===================================================
 // Atualizar a Palestra
 //===================================================
-    static function Update($id_palestra, $titulo_palestra, $nome_arquivo, $duracao_palestra, $data_liberacao){
+
+    static function Update($id_palestra, $titulo_palestra, $nome_arquivo, $data_liberacao){
         try {
             $conexao = BancoDados::conectar();
             $update = $conexao->prepare('UPDATE palestras SET titulo_palestra = :titulo_palestra, nome_palestra = :nome_arquivo,
-                                            duracao_palestra = :duracao_palestra, data_liberacao = :data_liberacao, data_alteracao = NOW() 
+                                            data_liberacao = :data_liberacao, data_alteracao = NOW() 
                                         WHERE id = :id_palestra');
             $update->bindValue(':id_palestra',$id_palestra);
             $update->bindValue(':titulo_palestra',$titulo_palestra);
             $update->bindValue(':nome_arquivo',$nome_arquivo);
-            $update->bindValue(':duracao_palestra',$duracao_palestra);
+            // $update->bindValue(':duracao_palestra',$duracao_palestra);
             $update->bindValue(':data_liberacao',$data_liberacao);
             $update->execute();
             //$update = $update->fetch(PDO::FETCH_OBJ);
@@ -220,8 +209,7 @@ abstract class Palestra{
 }
 
 // Testando a inserçao de dados
-//$adicionar = Palestra::Update('3','Teste Update','teste_update.mp4', 6000, '2021/03/14');
-
+//$adicionar = Palestra::Update('31','Emponderamento Feminino e Saúde da Mulher','WhatsApp Video 2021-03-17 at 07.27.27.mp4', '2021/03/14');
 
 
 
